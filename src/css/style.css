@@ -1,0 +1,612 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #68dd5d;
+  border: #000000;
+  color: #000000;
+  font-size: 16px;
+  box-sizing: border-box;
+  /* font-family: "Comic Sans MS", "Trebuchet MS", "Lucida Sans Unicode", Arial, Helvetica, sans-serif; */
+  font-family: "OpenSans";
+  /* user-select: none; */
+  -webkit-tap-highlight-color: rgba(
+    0,
+    0,
+    0,
+    0
+  ); /* отключает синий фон на телефоне при клике */
+}
+
+.title {
+  margin: 15px auto 0;
+  font-size: 30px;
+}
+
+.nav {
+  display: flex;
+}
+
+#taskOne .container {
+  font-size: 24px;
+  padding: 15px;
+}
+
+#taskOne .container p {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.task {
+  display: flex;
+  margin: 10px;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+  min-width: 320px;
+  max-width: 95%;
+  /* width: 500px; */
+  border: 1px solid #0c1e3b;
+  border-radius: 10px;
+  background-color: #8cd685;
+}
+
+.btn {
+  padding: 7px 15px;
+  /* padding: 7px 40px; */
+  margin: 15px;
+
+  font-family: inherit;
+
+  border: 1px solid #1694746e;
+  border-radius: 50px;
+  transition: background-color, box-shadow 1s ease;
+  color: #f0f2f3;
+  background-color: #0c1e3b;
+
+  cursor: pointer;
+}
+
+.btn:hover {
+  box-shadow: 0px 0px 15px 2px #0867ff;
+}
+
+.btn:active {
+  box-shadow: 0px 0px 15px 2px #0062ff;
+  background-color: #1a4a92;
+}
+
+H2 {
+  text-align: center;
+  margin: 10px;
+}
+
+.header {
+  margin-bottom: 22px;
+}
+
+.has-tooltip {
+  position: relative;
+
+  padding: 10px 15px;
+  color: #ffffff;
+
+  font-size: 14px;
+
+  border: none;
+  border-radius: 10px;
+  background: #e43333;
+  text-decoration: none;
+}
+
+.has-tooltip:hover {
+  color: #000000;
+}
+
+.tooltip {
+  display: block;
+  position: absolute;
+  height: 50px;
+  width: 100px;
+  background-color: #949494;
+  border: 1px solid #999;
+  border-radius: 10px;
+  color: #000000;
+}
+
+.tooltip > p {
+  padding: 3px 6px;
+  font-size: 10px;
+}
+
+.tooltip > p:first-child {
+  color: #ffffff;
+}
+
+.tooltip > p:nth-child(2) {
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 0px 0px 10px 10px;
+  height: 24px;
+}
+
+[data-position="right"] {
+  margin-left: 10px;
+}
+
+[data-position="right"]::after {
+  content: "";
+
+  position: absolute; /* Абсолютное позиционирование */
+  left: -20px;
+  top: 50%; /* Положение треугольника */
+  transform: translateY(-50%);
+
+  border: 10px solid transparent; /* Прозрачные границы */
+  border-right: 10px solid #999999; /* Добавляем треугольник */
+}
+
+[data-position="bottom"] {
+  margin-top: 10px;
+}
+
+[data-position="bottom"]::after {
+  content: "";
+
+  position: absolute; /* Абсолютное позиционирование */
+  top: -20px;
+  left: 50%; /* Положение треугольника */
+  transform: translateX(-50%);
+
+  border: 10px solid transparent; /* Прозрачные границы */
+  border-bottom: 10px solid #999999; /* Добавляем треугольник */
+}
+
+[data-position="left"] {
+  margin-left: -10px;
+}
+
+[data-position="left"]::after {
+  content: "";
+
+  position: absolute; /* Абсолютное позиционирование */
+  right: -20px;
+  top: 50%; /* Положение треугольника */
+  transform: translateY(-50%);
+
+  border: 10px solid transparent; /* Прозрачные границы */
+  border-left: 10px solid #999999; /* Добавляем треугольник */
+}
+
+[data-position="top"] {
+  margin-top: -10px;
+}
+
+[data-position="top"]::after {
+  content: "";
+
+  position: absolute; /* Абсолютное позиционирование */
+  bottom: -20px;
+  left: 50%; /* Положение треугольника */
+  transform: translateX(-50%);
+
+  border: 10px solid transparent; /* Прозрачные границы */
+  border-top: 10px solid #999999; /* Добавляем треугольник */
+}
+
+.list-edit-container {
+  width: 100%;
+  padding-bottom: 20px;
+
+  background: linear-gradient(#919191, transparent 1px),
+    linear-gradient(90deg, #919191, transparent 1px);
+  background-size: 20px 20px;
+  background-position: center center;
+
+  border-radius: 0 0 0 40px;
+}
+
+.list-edit-products-container {
+  margin: 15px;
+  padding: 15px;
+  border: 1px solid #0000002c;
+  border-radius: 5px;
+  background-color: #eeeeeea8;
+}
+
+.list-edit-title {
+  margin: 15px;
+  padding: 0 10px;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-edit-add {
+  text-decoration: none;
+  font-size: 120%;
+  line-height: 15px;
+  width: 15px;
+  height: 15px;
+
+  padding: 4px;
+
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #000000;
+  border-radius: 50%;
+}
+
+.list-edit-product {
+  display: flex;
+  width: 100%;
+  margin: 5px auto 15px;
+  padding: 3px;
+  box-sizing: content-box;
+  justify-content: space-between;
+  border-bottom: 1px solid #000000;
+}
+
+.list-edit-actions {
+  display: flex;
+  justify-content: end;
+}
+
+.list-edit-name {
+  width: 55%;
+}
+
+.list-edit-price {
+  width: 25%;
+}
+
+.list-edit-actions {
+  width: 20%;
+  align-items: center;
+}
+
+.list-edit-remove {
+  height: 14px;
+  width: 14px;
+
+  margin: auto 8px;
+
+  background: url(../img/cross-svgrepo-com.svg);
+  background-position: center;
+  background-size: 14px;
+}
+
+.list-edit-editor {
+  height: 14px;
+  width: 14px;
+
+  background: url(../img/pencil-svgrepo-com.svg);
+  background-position: center;
+  background-size: 14px;
+}
+
+.list-edit-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: #ffffff;
+}
+
+.list-edit-popup::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+}
+
+.list-edit-modal {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.list-edit-modal-active {
+  display: flex;
+}
+
+.list-edit-form {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  min-width: 280px;
+  max-width: 400px;
+
+  max-height: 400px;
+
+  padding: 5px;
+
+  overflow: auto;
+  background: #fff;
+
+  border-radius: 15px;
+}
+
+.list-edit-form-label {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 100%;
+
+  flex-wrap: wrap;
+}
+
+.list-edit-form-label-text {
+  width: 100%;
+  margin: 15px 15px 0px;
+  padding-left: 5px;
+}
+
+.list-edit-form-label-field {
+  width: 100%;
+  margin: 8px 15px 0px;
+  padding: 8px;
+  border: 1px solid #000000;
+  border-radius: 8px;
+}
+
+.list-edit-form-label-field:focus {
+  /* outline: 1px solid #0c1e3b; */
+  box-shadow: 0px 0px 10px 0px #0c1e3b;
+  outline: 0px;
+}
+
+.list-edit-btn {
+  width: 100px;
+  margin-top: 20px;
+}
+
+@keyframes glow {
+  0% {
+    /* border-color: #0062ff; */
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3),
+      inset 0 0 5px rgba(255, 0, 0, 0.2);
+  }
+  100% {
+    /* border-color: #0062ff; */
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.9),
+      inset 0 0 10px rgba(255, 0, 0, 0.7);
+  }
+}
+
+.error-add {
+  animation: glow 500ms ease-out infinite alternate;
+}
+
+.calendar-container {
+  box-sizing: border-box;
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  margin: 10px 10px 20px;
+  padding: 15px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)),
+    url(../img/airport.jpg);
+  background-position: center;
+  background-size: cover;
+  background-color: #919191;
+  border-radius: 6px;
+  color: #ffffff;
+}
+
+.calendar-title p {
+  font-size: 22px;
+}
+
+.calendar-block {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.calendar-label-text {
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 5px;
+  display: flex;
+}
+
+.calendar-label-input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 9px;
+  display: flex;
+  border: 1px solid #697278;
+  border-radius: 3px;
+}
+
+.calendar-block:nth-of-type(2) .calendar-label-input {
+  width: 80%;
+}
+
+.calendar-swap {
+  display: flex;
+  box-sizing: border-box;
+
+  width: 35px;
+  height: 35px;
+  margin: auto;
+  background-size: cover;
+  background-image: url(../img/circular-refresh-arrows.png);
+}
+
+.calendar-block-small {
+  position: relative;
+  box-sizing: border-box;
+  width: 48%;
+  margin-top: 10px;
+}
+
+.calendar-minus {
+  position: absolute;
+  top: 35px;
+  left: 16px;
+  height: 17px;
+  width: 17px;
+  border: 1px solid #24bd24;
+  border-radius: 15%;
+}
+
+.calendar-minus::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 11px;
+  height: 1px;
+  background-color: #24bd24;
+}
+
+.calendar-plus {
+  position: absolute;
+  top: 35px;
+  right: 16px;
+  height: 17px;
+  width: 17px;
+  border: 1px solid #df2222;
+  border-radius: 15%;
+}
+
+.calendar-plus::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 11px;
+  height: 1px;
+  background-color: #df2222;
+}
+
+.calendar-plus::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1px;
+  height: 11px;
+  background-color: #df2222;
+}
+
+.calendar-block-small .calendar-label-input {
+  padding-left: 50px;
+  padding-right: 50px;
+  text-align: center;
+}
+
+.calendar-block-small:nth-of-type(4) {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.calendar-btn {
+  width: 100%;
+  margin: 15px auto 0px;
+  padding: 8px;
+  font-size: 120%;
+  border-radius: 5px;
+  background-color: #ff0000;
+}
+
+.calendar-btn:hover {
+  background-color: #ce0202;
+}
+
+.calendar-label-checkbox {
+  width: 33px;
+  height: 33px;
+}
+
+.calendar-block-date {
+  width: 50%;
+}
+
+.calendar-block-date .calendar-label-input {
+  cursor: pointer;
+}
+
+/* .calendar-block-date:nth-of-type(1) {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+  } */
+
+.calendar-date-to {
+  width: 100%;
+}
+
+.calendar-date-to .calendar-label-input {
+  width: 100%;
+  outline: none;
+  border: none;
+  /* border: 1px solid #ff0000;
+    border-right: none; */
+}
+
+.calendar-date-from {
+  display: none;
+  width: 50%;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 2;
+}
+
+.calendar-date-from .calendar-label-input {
+  width: 100%;
+  outline: none;
+  border-left: 1px solid white;
+  border: none;
+}
+
+.calendar-date-from-active {
+  display: block;
+}
+
+.calendar-date-to-active {
+  width: 50%;
+}
+
+.calendar-date-from-active .calendar-label-input {
+  border-left: none;
+  border-radius: 0 3px 3px 0;
+}
+
+.calendar-date-to-active .calendar-label-input {
+  border-right: none;
+  border-radius: 3px 0px 0px 3px;
+}
